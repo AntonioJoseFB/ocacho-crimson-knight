@@ -74,7 +74,7 @@ sys_physics_update_one_entity:
     ld d, a                            ;;Saving pos_x on d
     ld a, (hl)                         ;;Saving vel_x on a
 
-    add a, d                           ;;Now a contains e->pos_x + e->vel_x
+    add a, d                         ;;Now a contains e->pos_x + e->vel_x
 
     push af
 
@@ -85,34 +85,9 @@ sys_physics_update_one_entity:
 
     ld (hl), a
 
-    ;;Entity->pos_y
-    inc hl                             ;;Hl pointing to entity pos_y
-    ld a, (hl)                         ;;Saving pos_y on a
-
-    push af
-
-    ld a, #0x04
-    call inc_hl_number                 ;;Hl pointing to entity vel_y
-
-    pop af
-
-    ld d, a                            ;;Saving pos_y on d
-    ld a, (hl)                         ;;Saving vel_y on a
-
-    add a, d                           ;;Now a contains e->pos_y + e->vel_y
-
-    push af
-
-    ld a, #0x04
-    call dec_hl_number                 ;;Hl pointing to entity pos_y
-
-    pop af
-
-    ld (hl), a
-
     ;;At the end, hl should be pointing towards the entity memory direction again
 
-    ld a, #0x02
+    ld a, #0x01
     call dec_hl_number                 ;;Hl pointing to entity type
 
 ret

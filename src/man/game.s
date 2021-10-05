@@ -105,7 +105,7 @@ ret
 man_game_play::
     game_loop:
 
-	;;call sys_physics_update
+	call sys_physics_update
 	call sys_render_update
 	;;call man_entity_update
 	call cpct_waitVSYNC_asm
