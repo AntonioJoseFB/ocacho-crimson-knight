@@ -15,7 +15,6 @@
 .globl sys_physics_update
 .globl sys_render_init
 .globl sys_render_update
-.globl sys_ai_update
 
 ;;Entity variables
 .globl entity_size
@@ -86,9 +85,8 @@ m_sprite_arrow:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 DEFINE_ENTITY_TEMPLATE player_tmpl,           #7, #10, #180, #4, #10, 0, 0, m_sprite_player
-DEFINE_ENTITY_TEMPLATE enemy_tmpl,           #7, #10, #180, #4, #10, 0, 0, m_sprite_enemy
-DEFINE_ENTITY_TEMPLATE arrow_tmpl,           #7, #10, #180, #4, #10, 0, 0, m_sprite_arrow
-
+DEFINE_ENTITY_TEMPLATE enemy_tmpl,           #11, #0, #0, #4, #10, 0, 0, m_sprite_enemy
+DEFINE_ENTITY_TEMPLATE arrow_tmpl,           #11, #0, #0, #4, #10, 0, 0, m_sprite_arrow
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; FUNCTIONS
@@ -107,7 +105,6 @@ ret
 man_game_play::
     game_loop:
 
-    ;;call sys_ai_update
 	;;call sys_physics_update
 	call sys_render_update
 	;;call man_entity_update
@@ -122,6 +119,7 @@ ret
 ;;  - HL: should contain the memory direction for the template to by created
 ;; Objetive: Creates an entity given a template
 ;; Modifies: 
+;; Returns: DE-> Return the memory direction for the entity created
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 man_game_create_template_entity:
 
