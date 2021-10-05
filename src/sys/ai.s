@@ -4,7 +4,6 @@
 
 ;;Managers
 .globl man_entity_forall_matching
-.globl man_game_create_enemy
 
 ;;Entity types
 .globl entity_type_movable
@@ -164,7 +163,7 @@ sys_ai_behaviour_mothership::
     ;;This check is wrong im retard
     jr nz, no_create_enemy 
 
-    call man_game_create_enemy
+    ;;call man_game_create_enemy
     
     no_create_enemy:
 
